@@ -1,0 +1,40 @@
+package test.test1;
+
+class Solution {
+
+	public static void main(String args[]) {
+		Solution sol = new Solution();
+		
+		System.out.println(sol.getLongest("bbb"));
+	}
+	
+	private int getLongest(String str) {
+		if(str.equals(null))
+			return 0;
+		if(str.length() == 0 )
+			return 0;
+		
+		String longest = "", longest1 = "";
+		
+		for(int i =0 ; i<str.length()-1; i++) {
+			if(str.charAt(i+1)!= str.charAt(i) && longest.indexOf(str.charAt(i)) ==-1) {
+				longest += str.charAt(i);
+				if(longest1.length()<longest.length()) {
+					longest1 = longest;
+				}
+			}
+			else {
+				longest = "";
+				
+			}
+		}
+		
+		if(longest1.indexOf(str.charAt(str.length()-1)) ==-1)
+			longest1 = longest1 + str.charAt(str.length()-1);
+		
+		
+		System.out.println(longest1);
+		return longest1.length();
+	}
+
+}
