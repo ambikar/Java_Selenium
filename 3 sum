@@ -1,0 +1,39 @@
+package test.test1;
+
+import java.util.Arrays;
+
+class Solution {
+
+	public static void main(String args[]) {
+		Solution sol = new Solution();
+		int[] array = { -1, 0, 1, 2, -1, -4 };
+		sol.sum(array, 0);
+
+	}
+
+	private void sum(int[] nums, int sum) {
+
+		Arrays.sort(nums);
+
+		for (int i = 0; i < nums.length - 2; i++) {
+			int j = i + 1;
+			int k = nums.length - 1;
+
+			while (j < k) {
+				if (nums[i] + nums[j] + nums[k] == sum) {
+					System.out.print(nums[i] + " " + nums[j] 
+							+ " " + nums[k]);
+					System.out.println();
+					break;
+
+				} else if (nums[i] + nums[j] + nums[k] < sum) {
+					j++;
+				} else {
+					k--;
+				}
+			}
+		}
+
+	}
+
+}
