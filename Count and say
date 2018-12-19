@@ -1,0 +1,45 @@
+package test.test1;
+
+class Solution {
+
+	public static void main(String args[]) {
+		Solution sol = new Solution();
+		System.out.println(sol.countAndSay(11));
+
+	}
+	
+	private String countAndSay(int input) {
+		
+		String str = Integer.toString(input);
+		
+		String result = ""; int count =1;
+		
+		
+		
+		for(int i =1; i< str.length(); i++) {
+			if(str.charAt(i) == str.charAt(i-1)) {
+				count++;
+				if(str.length()==2) {
+					result = result+count;
+				result = result + (str.charAt(i)- '0');
+				}
+			}
+			else {
+				result += count;
+				result = result + (str.charAt(i)- '0');
+				count = 1;
+			}
+		}
+		
+		if(str.charAt(str.length()-1) != str.charAt(str.length()-2)) {
+			result = result + '1';
+			result = result + str.charAt(str.length()-1);
+		}
+		
+		
+		return result;
+		
+	}
+
+	
+}
