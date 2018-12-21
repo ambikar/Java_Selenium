@@ -1,0 +1,21 @@
+package test.test1;
+
+
+class Solution {
+
+	  public static void main(String[] args) 
+	    { 
+		  Solution so = new Solution();
+	        String str = "abcd"; 
+	      System.out.println(so.isPowerOfTwo(32)); 
+	    }
+	  
+	  
+	public boolean isPowerOfTwo(int n) {
+	    return n>0 && (n&n-1)==0;
+	}
+  
+   
+
+
+}
