@@ -1,0 +1,30 @@
+package test.test1;
+
+public class Solution {
+
+	public static void main(String args[]) throws Exception {
+
+		Solution sol = new Solution();
+		System.out.println(sol.isUnique("aab"));
+	}
+
+	
+	public boolean isUnique(String str){
+  //ascii table length is 128
+	  if(str.length()>128)
+		  return false;
+	  
+	  boolean[] set = new boolean[128];
+	  
+	  for(int i =0; i< str.length(); i++) {
+		  int j = str.charAt(i);
+		  
+		  if(set[j])
+			  return false;
+	  
+	  set[j] = true;
+	  }
+	  
+	  return true;
+	}
+}
