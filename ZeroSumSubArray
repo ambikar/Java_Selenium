@@ -1,0 +1,36 @@
+package Test.practice;
+
+import java.util.*;
+
+public class Practice {
+
+	
+	public static void main(String args[]) {
+		Practice p = new Practice();
+		int[] array = {1,2,-5,1,2,-1};
+						
+		System.out.println(Arrays.toString(p.zeroSubArray(array)));
+	}
+
+	private int[] zeroSubArray(int[] arr) {
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		
+		int sum =0;
+		for(int i=0; i<= arr.length; i++) {
+			Integer oldIndex = map.get(sum);
+			if(oldIndex==null && i ==arr.length) {
+				return null;
+			} else if(oldIndex== null) {
+				map.put(sum,i);
+				sum = sum+ arr[i];
+				}
+			else {
+				return Arrays.copyOfRange(arr, oldIndex, i);
+			}
+		}
+		return null;
+	}
+	
+	
+
+}
