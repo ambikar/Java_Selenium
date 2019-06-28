@@ -1,0 +1,33 @@
+package Test.practice;
+
+import java.util.*;
+
+public class Practice {
+
+	
+	public static void main(String args[]) {
+		Practice p = new Practice();
+		int[] array = {4,3,1,2,5};
+		System.out.println(p.getConsecutive(array));
+	}
+
+	private int getConsecutive(int[] arr) {
+		HashSet<Integer> set = new HashSet<Integer>();
+		
+		for(int i: arr){
+			set.add(i);
+		}
+		
+		int max =0;
+		for(int i : set) {
+			if(set.contains(i-1)) continue;
+			
+			int longest=0;
+			while(set.contains(i++)) longest++;
+				max = Math.max(max, longest);
+		}
+		return max;
+	}
+	
+
+}
