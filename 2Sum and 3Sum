@@ -1,0 +1,63 @@
+package Test.practice;
+
+import java.util.*;
+
+public class Practice {
+
+	public static void main(String args[]) {
+		Practice p = new Practice();
+		int[] array = { 2, 5, 11, 1, 4, 6, 9 };
+		int[] threeSum = { -1, 0, 1, 2, -1, -4 };
+
+		// System.out.println(Arrays.toString(p.findPairWithSum(array, 6)));
+		System.out.println(p.threeSum(threeSum));
+	}
+
+	private ArrayList<int[]> threeSum(int[] threeSum) {
+		ArrayList<int[]> list = new ArrayList<int[]>();
+
+		Arrays.sort(threeSum);
+
+		for (int i = 0; i < threeSum.length - 3; i++) {
+			if (i == 0 || threeSum[i] > threeSum[i - 1]) {
+				int start = i + 1;
+				int end = threeSum.length - 1;
+
+				while (start < end) {
+					if (threeSum[i] + threeSum[start] + threeSum[end] == 0) {
+						list.add(new int[] { threeSum[i], threeSum[start], threeSum[end] });
+					} else if (threeSum[i] + threeSum[start] + threeSum[end] < 0) {
+						int currStart = start;
+						while (threeSum[currStart] == threeSum[start] && start < end) {
+							start++;
+						}
+					} else {
+						int currEnd = end;
+						while (threeSum[currEnd] == threeSum[end] && start < end) {
+							end--;
+						}
+					}
+				}
+			}
+		}
+		return list;
+	}
+
+	public int[] findPairWithSum(int[] array, int target) {
+		int result[] = new int[2];
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+		for (int i = 0; i < array.length; i++) {
+			int difference = target - array[i];
+			if (map.containsKey(array[i])) {
+				result[0] = map.get(array[i]);
+				result[1] = i;
+			} else {
+				map.put(difference, i);
+			}
+		}
+
+		return result;
+	}
+
+}
