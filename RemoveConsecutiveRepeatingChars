@@ -1,0 +1,50 @@
+package Test.practice;
+
+import java.util.*;
+
+public class Practice {
+
+	public static void main(String args[]) {
+		Practice rem = new Practice();
+		rem.removeDup("abbaca");
+	}
+
+	private boolean hasRepeatedChars(StringBuilder sb) {
+		HashSet<Character> set = new HashSet<Character>();
+
+		for (int i = 0; i < sb.length(); i++) {
+			if (set.contains(sb.charAt(i))) {
+				return false;
+			} else
+				set.add(sb.charAt(i));
+		}
+		return true;
+	}
+
+	// aaca
+	private void removeDup(String str) {
+
+		if (str == null || str.length() == 0)
+			return;
+
+		StringBuilder sb = new StringBuilder(str);
+		StringBuilder output = null;
+
+		while (!this.hasRepeatedChars(sb)) {
+			output = new StringBuilder();
+			for (int i = 0; i < sb.length() - 1; i++) {
+				if (sb.charAt(i) == sb.charAt(i + 1)) {
+					i++;
+					continue;
+				} else {
+					output.append(sb.charAt(i));
+				}
+			}
+			output.append(str.charAt(sb.length() - 1));
+
+			sb = output;
+		}
+		System.out.println(output);
+	}
+
+}
