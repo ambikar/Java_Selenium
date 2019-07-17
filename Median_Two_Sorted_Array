@@ -1,96 +1,48 @@
-package test.test1;
+package Test.practice;
 
-public class Solution {
+import java.util.*;
 
-	public static void main(String[] args) {
-		Solution sol = new Solution();
-		int arr1[] = { 1, 2, 3, 4 };
-		int arr2[] = { 13, 17, 30, 45 };
+public class Practice {
 
-		System.out.print(sol.medianArray(arr1, arr2));
+	public static void main(String args[]) {
+		Practice sol = new Practice();
+		int[] a = { 2, 6, 9, 10, 11 };
+		int[] b = { 1, 5, 7, 12, 15 };
+
+		print(sol.median(a, b, 0, 0, a.length - 1, b.length - 1));
+
 	}
 
-	private int medianArray(int[] arr1, int[] arr2) {
-		int length = arr1.length;
+	private int median(int[] a, int[] b, int aStart, int bStart, int aEnd, int bEnd) {
 
-		int i = 0;
-		int j = 0;
-		int m1 = -1, m2 = -1;
-
-		for (int k = 0; k <= length; k++) {
-
-			if (i == length) {
-				m1 = m2;
-				m2 = arr2[0];
-				break;
-			} 
-			else if (j == length)
-			{
-				m1 = m2;
-				m2 = arr1[0];
-				break;
-			}
-
-			if (arr1[i] < arr2[j]) {
-				m1 = m2;
-				m2 = arr1[i];
-				i++;
-			}
-
-			else {
-				m1 = m2;
-				m2 = arr2[j];
-				j++;
-			}
+		if (a.length == 0 && b.length == 0)
+			return 0;
+		if (aEnd- aStart ==1  && bEnd - bStart==1) {
+			return (Math.max(a[aStart], b[bStart]) + Math.min(a[aEnd], b[bEnd]))/2;
 		}
 
-		return (m1 + m2) / 2; 
+		int aIndex = (aStart + aEnd) / 2;
+		int bIndex = (bStart + bEnd) / 2;
 
+
+		int median1 = a[aIndex];
+		int median2 = b[bIndex];
+
+		if (median1 == median2)
+			return median1;
+
+		if (median1 < median2) {
+			aStart = aIndex;
+			bEnd = bIndex;
+		} else {
+			aEnd = aIndex;
+			bStart = bIndex;
+		}
+
+		return median(a, b, aStart, aEnd, bStart, bEnd);
 	}
-}
 
-
-
-
-
-    public float find(int [] a, int start_a, int end_a, int [] b, int start_b, int end_b){
-        
-        if(end_a-start_a+1==2 && end_b-start_b+1==2){
-            float x = Math.max(a[start_a],b[start_b]);
-            float y = Math.min(a[end_a],b[end_b]);
-            return (x+y)/2;
-        }
-
-        float median_a = getMedian(a, start_a, end_a);
-        float median_b = getMedian(b, start_b, end_b);
-
-        int mid_a = (start_a+end_a)/2;
-        int mid_b = (start_b+end_b)/2;
-        if(median_a>median_b){
-            return find(a,start_a,mid_a,b,mid_b,end_b);
-        }else{
-            return find(a,mid_a,end_a,b,start_b,mid_b);
-        }
-
-    }
-
-    public float getMedian(int [] x, int start, int end){
-        int size = end-start+1;
-        double median;
-        if(size%2==0){
-            float m = x[start+(size/2)];
-            float n = x[start+(size-1)/2];
-            return (m+n)/2;
-        }else{
-            return  x[start+(size-1)/2];
-        }
-    }
-
-    public static void main(String[] args) {
-        MedianBinary m = new MedianBinary();
-        int [] a = {2,6,9,10,11};
-        int [] b = {1,5,7,12,15};
-        float x = m.find(a,0,a.length-1,b,0,b.length-1);
-        System.out.println("Median of combined sorted array is: " + x);
-    }
+	public static void print(Object s) {
+		System.out.println(s);
+	}
 }
