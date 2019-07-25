@@ -1,0 +1,60 @@
+package Test.practice;
+
+import java.util.Arrays;
+import java.util.HashSet;
+
+public class Practice {
+
+	public static void main(String args[]) {
+		Practice p = new Practice();
+
+		int[] arr = { -5, -2, 100020, 6, 4 };
+
+		print(p.solution(arr));
+	}
+
+	public int solution(int[] nums) {
+
+		if (nums.length == 0)
+			return 1;
+
+		Arrays.sort(nums);
+
+		HashSet<Integer> set = new HashSet<Integer>();
+
+		int ans = 1;
+
+		// remove duplicate elements
+		for (int i = 0; i < nums.length; i++)
+			set.add(nums[i]);
+
+		// If all the numbers are negative, then answer is 1
+		if (nums[nums.length - 1] < 0)
+			return ans;
+
+		// get the position of the first positive number in the array.
+		int positiveStarts = 0;
+		for (int i = 0; i < nums.length; i++) {
+			if (nums[i] < -100000)
+				continue;
+			if (nums[i] < 0) {
+				positiveStarts = i + 1;
+			}
+		}
+
+		// test only from the positive numbers in the array and find the minimum
+		for (int i = positiveStarts; i < nums.length; i++) {
+			if (nums[i] > 100000)
+				continue;
+			if (set.contains(ans)) {
+				ans++;
+			} else
+				return ans;
+		}
+		return ans;
+	}
+
+	public static void print(Object s) {
+		System.out.println(s);
+	}
+}
