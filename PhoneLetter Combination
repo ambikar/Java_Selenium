@@ -1,0 +1,58 @@
+package Test.practice;
+
+import java.util.*;
+
+public class Practice {
+
+	
+	  
+  HashMap<Integer, String> map = new HashMap<Integer, String>();
+
+	public static void main(String args[]) {
+		Practice p = new Practice();
+
+		print(p.letterCombinations("448"));
+	}
+
+	    public List<String> letterCombinations(String digits) {
+	    	this.getMap();
+	       List<String> list = new ArrayList<String> ();
+	       if(digits.length() ==0)
+	    	   return list;
+	       
+	       list.add("");
+	       for(int i =0; i< digits.length(); i++) {
+		       List<String> temp = new ArrayList<String>();
+		       
+			String str = map.get(digits.charAt(i)-'0');
+		       
+		       char[] strArray = str.toCharArray();
+		       for(String s: list) {
+		    	   for(char c: strArray) {
+		    		   temp.add(s + c);
+		    	   }
+		       }
+		       
+		       list = temp;
+
+	       }
+	       
+	       return list;
+	    }
+
+	public static void print(Object s) {
+		System.out.println(s);
+	}
+	
+	private void getMap() {
+		map.put(2, "abc");
+		map.put(3, "def");
+		map.put(4, "ghi");
+		map.put(5, "jkl");
+		map.put(6, "mno");
+		map.put(7, "pqrs");
+		map.put(8, "tuv");
+		map.put(9, "wxyz");
+		  
+	}
+}
